@@ -28,4 +28,33 @@ class Enrollment:
         
         """
         CURSOR.execute(sql, (self.student_id, self.course_id))
+        self.id = CURSOR.lastrowid
+        CONN.commit()
+        
+        
+    @classmethod
+    def all(cls):
+        sql = "SELECT * FROM enrollments;"
+        CURSOR.execute(sql)
+        rows = CURSOR.fetchall()
+        return [cls(id=row[0], student_id=row[1], course_id=row[2]) for row in rows]
+
+    @classmethod
+    def find_by_id(cls, id):
+        sql = "SELECT * FROM enrollments WHERE id = ?"
+        CURSOR.execute(sql, (id,))
+        row = CURSOR.fetchone()
+        return cls(id=row[0], student_id=row[1], course_id=row[2]) if row else None
+
+    def update(self):
+        sql = """
+            UPDATE enrollments SET student_id = ?, course_id = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.student_id, self.course_id, self.id))
+        CONN.commit()
+
+    def delete(self):
+        sql = "DELETE FROM enrollments WHERE id = ?"
+        CURSOR.execute(sql, (self.id,))
         CONN.commit()

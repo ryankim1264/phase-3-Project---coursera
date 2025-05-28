@@ -23,4 +23,27 @@ class Course:
         """  
         CURSOR.execute(sql, (self.title , self.type))
         CONN.commit()
-          
+    
+    @classmethod
+    def all(cls):
+        sql = "SELECT * FROM courses;"
+        CURSOR.execute(sql)
+        rows = CURSOR.fetchall()
+        return [cls(id=row[0], name=row[1]) for row in rows]
+
+    @classmethod
+    def find_by_id(cls, id):
+        sql = "SELECT * FROM courses WHERE id = ?"
+        CURSOR.execute(sql, (id,))
+        row = CURSOR.fetchone()
+        return cls(id=row[0], name=row[1]) if row else None
+
+    def update(self):
+        sql = "UPDATE courses SET name = ? WHERE id = ?"
+        CURSOR.execute(sql, (self.name, self.id))
+        CONN.commit()
+
+    def delete(self):
+        sql = "DELETE FROM courses WHERE id = ?"
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
