@@ -1,7 +1,7 @@
 # phase-3-Project---coursera
 
 COURSERA 
-This is a platform where you can manage students and courses togethor with there specific enrollments.
+This is a command-line application where you can manage students and courses togethor with there specific enrollments.
 
 ## Features
 
