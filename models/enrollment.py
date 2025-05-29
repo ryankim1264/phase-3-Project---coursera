@@ -1,4 +1,4 @@
-from __init__ import CURSOR, CONN 
+from lib import CURSOR, CONN 
 
 class Enrollment:
     def __init__(self, student_id , course_id , id=None):
@@ -7,15 +7,13 @@ class Enrollment:
         self.course_id = course_id
     @classmethod   
     def create_table(cls):
-        sql ="""CREATE TABLE IF NOT EXISTS enrollments(
-            id INTEGER PRIMARY KEY,
-            student_id INTEGER,
-            course_id INTEGER,
-            FOREIGN KEY(students_id)
-        REFERENCE students(id),
-            FOREIGN KEY(course_id)
-        REFERENCE courses(id)    
-        )
+        sql ="""CREATE TABLE IF NOT EXISTS enrollments (
+    id INTEGER PRIMARY KEY,
+    student_id INTEGER,
+    course_id INTEGER,
+    FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+         );
        
         """   
         CURSOR.execute(sql)

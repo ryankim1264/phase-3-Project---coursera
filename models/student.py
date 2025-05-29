@@ -1,4 +1,4 @@
-from __init__ import CURSOR, CONN
+from lib import CURSOR, CONN
 
 class Student:
     def __init__(self, name , mark, id=None):
@@ -22,9 +22,9 @@ class Student:
     
     def save(self):
         sql= """
-        INSERT INTO students(name , mark) VALUE (?, ?)
+        INSERT INTO students(name , mark) VALUES (?, ?)
         """    
-        CURSOR.execute(sql, (self.name , self.location))
+        CURSOR.execute(sql, (self.name , self.mark))
         CONN.commit()
         
     @classmethod

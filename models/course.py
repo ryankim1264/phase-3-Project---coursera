@@ -1,4 +1,4 @@
-from __init__ import CURSOR, CONN
+from lib import CURSOR, CONN
 
 class Course:
     def __init__(self, title , type, id=None) :
@@ -18,7 +18,7 @@ class Course:
         CONN.commit()
         
     def save(self):
-        sql ="""INSERT INTO courses(title , type) VALUE(?, ?)
+        sql ="""INSERT INTO courses(title , type) VALUES(?, ?)
                
         """  
         CURSOR.execute(sql, (self.title , self.type))
