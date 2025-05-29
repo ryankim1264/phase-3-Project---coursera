@@ -10,7 +10,8 @@ def seed_data():
     
     student1 = Student(name="Jess" , mark= "A")
     student1.save()
-    student2 = Student(name="Tessie" , mark="B")
+     
+    student2 = Student(name="Winfrey" , mark="B")
     student2.save()
     course1 = Course("Computer science" , "IT" )
     course1.save()
@@ -21,4 +22,8 @@ def seed_data():
     enroll1.save()
     enroll2 = Enrollment(student_id=student2.id, course_id=course2.id)
     enroll2.save()
-print("DONE")
+    return student1, student2
+
+print("Data Seeded")
+
+    

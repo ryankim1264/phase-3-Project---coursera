@@ -25,11 +25,11 @@ class Course:
         CONN.commit()
     
     @classmethod
-    def all(cls):
+    def get_all(cls):
         sql = "SELECT * FROM courses;"
         CURSOR.execute(sql)
         rows = CURSOR.fetchall()
-        return [cls(id=row[0], name=row[1]) for row in rows]
+        return [cls(id=row[0], title=row[1], type=row[2]) for row in rows]
 
     @classmethod
     def find_by_id(cls, id):

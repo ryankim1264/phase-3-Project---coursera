@@ -56,3 +56,15 @@ class Enrollment:
         sql = "DELETE FROM enrollments WHERE id = ?"
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
+    @classmethod   
+    def get_courses_for_student(cls, student_id):
+     sql = """
+        SELECT courses.id, courses.title, courses.type
+        FROM courses
+        JOIN enrollments ON courses.id = enrollments.course_id
+        WHERE enrollments.student_id = ?
+     """
+     CURSOR.execute(sql, (student_id,))
+     from models.course import Course
+     rows = CURSOR.fetchall()
+     return [Course(id=row[0], title=row[1], type=row[2]) for row in rows]
