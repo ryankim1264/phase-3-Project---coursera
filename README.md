@@ -1,6 +1,6 @@
 # phase-3-Project---coursera
 
-COURSERA 
+|COURSERA|
 This is a command-line application where you can manage students and courses togethor with there specific enrollments.
 
 ## Features
