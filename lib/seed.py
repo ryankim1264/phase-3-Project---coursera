@@ -21,5 +21,4 @@ def seed_data():
     enroll1.save()
     enroll2 = Enrollment(student_id=student2.id, course_id=course2.id)
     enroll2.save()
-
-    print("DONE")
+print("DONE")
