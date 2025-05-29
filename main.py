@@ -7,18 +7,18 @@ from models.enrollment import Enrollment
 
 def show_menu():
     print("\n=== Coursera CLI ===")
-    print("1. List all students")
-    print("2. List all courses")
-    print("3. Add a student")
-    print("4. Add a course")
-    print("5. Enroll a student in a course")
-    print("6. View a student's courses")
+    print("1. --------List all students")
+    print("2. --------List all courses")
+    print("3. --------Add a student")
+    print("4. --------Add a course")
+    print("5. --------Enroll a student in a course")
+    print("6. --------View a student's courses")
     print("0. Exit")
 
 def run_cli():
     while True:
         show_menu()
-        choice = input("Select an option: ").strip()
+        choice = input("SELECT AN OPTION: ").strip()
 
         if choice == "1":
             for s in Student.get_all():
@@ -33,21 +33,21 @@ def run_cli():
             mark = input("Enter student mark: ")
             student = Student(name=name, mark=str(mark))
             student.save()
-            print("✅ Student added.")
+            print("✅ The student has been added!!!!!!!!!!!!!!!!!!")
 
         elif choice == "4":
             title = input("Enter course title: ")
             course_type = input("Enter course type: ")
             course = Course(title=title, type=course_type)
             course.save()
-            print("✅ Course added.")
+            print("✅ The course has been added!!!!!!!!!!!!!!!!.")
 
         elif choice == "5":
             sid = input("Student ID: ")
             cid = input("Course ID: ")
             enrollment = Enrollment(student_id=int(sid), course_id=int(cid))
             enrollment.save()
-            print("✅ Student enrolled.")
+            print("✅ The student has been enrolled to the course !!!!!!!")
 
         elif choice == "6":
             sid = input("Enter student ID: ")
@@ -57,18 +57,18 @@ def run_cli():
                 print(f"- {c.title}")
 
         elif choice == "0":
-            print("BADAEE!")
+            print("BADAEE!!!!!!!!!!!!!!!!!!. THANKS FOR VISITING COURSERA. BYEEE!!")
             break
 
         else:
-            print("❌ Invalid choice , Try again.")
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!! Invalid choice , Try again!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
 if __name__ == "__main__":
     run_cli()
 
 student1, student2 = seed_data()
-print(f"Courses for student {student1.name} (id={student1.id}):")
-print(student2.id)
+# print(f"Courses for student {student1.name} (id={student1.id}):")
+# print(student2.id)
 
 
 if __name__ == "__main__":
