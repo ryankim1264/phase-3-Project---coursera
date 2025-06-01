@@ -9,7 +9,7 @@ class Student:
     @classmethod
     def create_table(cls):
         sql = """CREATE TABLE IF NOT EXISTS students (
-            id INTEGER PRIMARY KEY, 
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
             name TEXT,
             mark TEXT
         )"""
@@ -29,7 +29,7 @@ class Student:
         return [cls(id=row[0], name=row[1], mark=row[2]) for row in rows]
 
     @classmethod
-    def find_by_id(cls, id):
+    def get_by_id(cls, id):
         CURSOR.execute("SELECT * FROM students WHERE id = ?", (id,))
         row = CURSOR.fetchone()
         return cls(id=row[0], name=row[1], mark=row[2]) if row else None

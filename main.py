@@ -13,6 +13,8 @@ def show_menu():
     print("4. --------Add a course")
     print("5. --------Enroll a student in a course")
     print("6. --------View a student's courses")
+    print("7. ........Update student")
+    print("8. ........Delete course")
     print("0. Exit")
 
 def run_cli():
@@ -40,14 +42,14 @@ def run_cli():
             course_type = input("Enter course type: ")
             course = Course(title=title, type=course_type)
             course.save()
-            print("✅ The course has been added!!!!!!!!!!!!!!!!.")
+            print("The course has been added!!!!!!!!!!!!!!!!.")
 
         elif choice == "5":
             sid = input("Student ID: ")
             cid = input("Course ID: ")
             enrollment = Enrollment(student_id=int(sid), course_id=int(cid))
             enrollment.save()
-            print("✅ The student has been enrolled to the course !!!!!!!")
+            print("The student has been enrolled to the course !!!!!!!")
 
         elif choice == "6":
             sid = input("Enter student ID: ")
@@ -55,7 +57,28 @@ def run_cli():
             print(f"Courses for Student {sid}:")
             for c in courses:
                 print(f"- {c.title}")
-
+        
+        elif choice == "7":
+            sid = input("Enter student ID to update: ")
+            new_mark = input("Enter new mark: ")
+            student = Student.get_by_id(int(sid))
+            if student:
+                student.mark = str(new_mark)
+                student.save()
+                print("Student updated successfully!")
+            else:
+                print("Student not found!")
+                
+        elif choice == "8":
+            sid = input("Enter student ID to delete: ")
+            student = Student.get_by_id(int(sid))
+            if student:
+                student.delete()
+                print(" Student deleted successfully!")
+            else:
+                print("Student not found!")
+                
+            
         elif choice == "0":
             print("BADAEE!!!!!!!!!!!!!!!!!!. THANKS FOR VISITING COURSERA. BYEEE!!")
             break
@@ -67,8 +90,6 @@ if __name__ == "__main__":
     run_cli()
 
 student1, student2 = seed_data()
-# print(f"Courses for student {student1.name} (id={student1.id}):")
-# print(student2.id)
 
 
 if __name__ == "__main__":
